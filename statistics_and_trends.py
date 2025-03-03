@@ -16,8 +16,7 @@ import seaborn as sns
 
 def plot_relational_plot(df):
     fig, ax = plt.subplots(figsize=(10, 6))
-    plt.scatter(df['GDP per capita'], df['Healthy life expectancy'], marker='o', 
-                s=50, c=df['Score'], cmap='RdYlGn', edgecolor='black')
+    plt.scatter(df['GDP per capita'], df['Healthy life expectancy'], marker='o', s=50, c=df['Score'], cmap='RdYlGn', edgecolor='black')
     plt.colorbar(label='Score')
     plt.xlabel('GDP per capita')
     plt.ylabel('Healthy life expectancy')
@@ -44,8 +43,7 @@ def plot_statistical_plot(df):
     fig, ax = plt.subplots(dpi=144)
     corr_matrix = df.corr()
     mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
-    sns.heatmap(corr_matrix, ax=ax, vmin=-1, vmax=1, cmap='RdBu', annot=True, 
-                mask=mask, linewidths=0.5, fmt='.2f')
+    sns.heatmap(corr_matrix, ax=ax, vmin=-1, vmax=1, cmap='RdBu', annot=True, mask=mask, linewidths=0.5, fmt='.2f')
     plt.title('Correlation Heatmap')
     plt.savefig('statistical_plot.png')
     return
@@ -99,7 +97,6 @@ def main():
     plot_categorical_plot(df)
     moments = statistical_analysis(df, col)
     writing(moments, col)
-    return
- 
+    return 
 if __name__ == '__main__':
     main()
