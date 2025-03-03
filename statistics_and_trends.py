@@ -46,22 +46,16 @@ def plot_statistical_plot(df):
     numeric_df = df.select_dtypes(include=[np.number])
     corr_matrix = numeric_df.corr()
     mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
-    sns.heatmap(corr_matrix, 
-                ax=ax, 
-                vmin=-1, 
-                vmax=1, 
-                cmap='RdBu',
-                annot=True, 
-                mask=mask, 
-                linewidths=0.5, 
-                fmt='.2f')
+    sns.heatmap(corr_matrix, ax=ax, vmin=-1, vmax=1, 
+                cmap='RdBu', annot=True, 
+                mask=mask, linewidths=0.5, fmt='.2f')
     plt.title('Correlation Heatmap')
     plt.savefig('statistical_plot.png')
     return
 
 
 
-def statistical_analysis(df, col: str):
+def statistical_analysis(df, col):
     mean = df[col].mean()
     stddev = df[col].std()
     skew = ss.skew(df[col])
@@ -79,7 +73,6 @@ def preprocessing(df):
 
 def writing(moments, col):
     mean, stddev, skew, excess_kurtosis = moments
-   
     skew_desc = "not skewed"
     if skew > 0.5:
         skew_desc = "right-skewed"
@@ -91,7 +84,6 @@ def writing(moments, col):
         kurt_desc = "leptokurtic"
     elif excess_kurtosis < -1:
         kurt_desc = "platykurtic"
-    
     print(f'For the attribute {col}:')
     print(f'Mean = {moments[0]:.2f}, '
           f'Standard Deviation = {moments[1]:.2f}, '
