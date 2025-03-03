@@ -43,6 +43,7 @@ def plot_categorical_plot(df):
 
 def plot_statistical_plot(df):
     fig, ax = plt.subplots(dpi=144)
+    columns = ['Score', 'GDP per capita', 'Healthy life expectancy', 'Freedom to make life choices']
     corr_matrix = df[columns].corr()
     mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
     sns.heatmap(corr_matrix, 
