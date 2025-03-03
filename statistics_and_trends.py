@@ -40,7 +40,6 @@ def plot_categorical_plot(df):
     return
 
 
-
 def plot_statistical_plot(df):
     fig, ax = plt.subplots(dpi=144)
     numeric_df = df.select_dtypes(include=[np.number])
@@ -52,7 +51,6 @@ def plot_statistical_plot(df):
     plt.title('Correlation Heatmap')
     plt.savefig('statistical_plot.png')
     return
-
 
 
 def statistical_analysis(df, col):
