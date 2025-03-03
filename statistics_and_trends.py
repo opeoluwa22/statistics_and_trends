@@ -54,10 +54,11 @@ def plot_statistical_plot(df):
                 mask=mask, 
                 linewidths=0.5, 
                 fmt='.2f')
+    columns = ['Score', 'GDP per capita', 'Healthy life expectancy', 'Freedom to make life choices']
     plt.title('Correlation Heatmap')
     plt.savefig('statistical_plot.png')
     return
-columns = ['Score', 'GDP per capita', 'Healthy life expectancy', 'Freedom to make life choices']
+
 
 
 def statistical_analysis(df, col: str):
