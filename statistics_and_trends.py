@@ -7,7 +7,6 @@ You should NOT change any function, file or variable names,
 Make use of the functions presented in the lectures
 and ensure your code is PEP-8 compliant, including docstrings.
 """
-from corner import corner
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -17,8 +16,7 @@ import seaborn as sns
 
 def plot_relational_plot(df):
     fig, ax = plt.subplots(figsize=(10, 6))
-    plt.scatter(df['GDP per capita'], df['Healthy life expectancy'],
-                marker='o', s=50, c=df['Score'], cmap='RdYlGn', edgecolor='black')
+    plt.scatter(df['GDP per capita'], df['Healthy life expectancy'], marker='o', s=50, c=df['Score'], cmap='RdYlGn', edgecolor='black')
     plt.colorbar(label='Score')
     plt.xlabel('GDP per capita')
     plt.ylabel('Healthy life expectancy')
@@ -43,16 +41,13 @@ def plot_categorical_plot(df):
 
 def plot_statistical_plot(df, method='pearson'):
     fig, ax = plt.subplots(dpi=144)
-    corr_matrix = df[columns].corr(method='pearson')
-
+    corr_matrix = df[columns].corr(method=method)
     mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
-    
     sns.heatmap(corr_matrix, ax=ax, vmin=-1, vmax=1, cmap='RdBu', annot=True, 
                 mask=mask, linewidths=0.5, fmt='.2f')
     plt.title(f'{method.capitalize()} Correlation Heatmap')
     plt.savefig('statistical_plot.png')
     return
-columns = ['Score', 'GDP per capita', 'Social support', 'Healthy life expectancy', 'Freedom to make life choices' ]
 
 
 def statistical_analysis(df, col: str):
@@ -73,7 +68,7 @@ def preprocessing(df):
 
 def writing(moments, col):
     mean, stddev, skew, excess_kurtosis = moments
-
+   
     skew_desc = "not skewed"
     if skew > 0.5:
         skew_desc = "right-skewed"
@@ -93,8 +88,8 @@ def writing(moments, col):
           f'Excess Kurtosis = {moments[3]:.2f}.')
     print(f'The data is {skew_desc} and {kurt_desc}.')
     return
-moments = statistical_analysis(df, 'Score')
 writing(moments, 'Score')
+
     
 
 def main():
